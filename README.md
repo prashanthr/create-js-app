@@ -4,8 +4,27 @@ This is a project bootstraped with create-react-app & node.js to give you the pe
 
 This project is built with the following technologies
 - React (react, react-dom)
+- Node.js (node, express, http, cors, compression, body-parser)
+- Essentials (config, debug, babel, babel-cli)
+
+Upcoming Features
 - Redux (react-redux, redux-saga)
-- Node.js (node)
-- Essentials (config, debug)
+- Integrate with npm
+
+Setup
+- Start the server
+```
+yarn run start-server
+# or
+npm run start-server
+```
+- Test the API by going to [http://localhost:9095/api/health](http://localhost:9095/api/health)
+
+- Start the client
+```
+yarn run start
+# or 
+npm run start
+```
 
 For more information on create-react-app, refer to the [readme](./README-CREATE-REACT-APP.md)
