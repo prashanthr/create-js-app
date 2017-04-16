@@ -23,6 +23,7 @@
     "react-dom": "^15.5.4"
   },
   "scripts": {
+    "release": "standard-version",
     "start": "react-scripts start",
     "start-server": "bin/server.sh",
     "build": "react-scripts build",
