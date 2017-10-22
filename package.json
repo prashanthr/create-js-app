@@ -1,8 +1,10 @@
 {
-  "name": "create-js-app",
+  "name": "@prashanthr/create-js-app",
   "version": "0.1.4",
   "private": true,
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "eslint": "^3.19.0",
     "react-scripts": "0.9.5",
     "standard": "^10.0.1",
@@ -14,25 +16,40 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "body-parser": "^1.17.1",
     "config": "^1.25.1",
-    "cors": "^2.8.3",
     "debug": "^2.6.3",
-    "express": "^4.15.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-redux": "^5.0.4",
-    "react-router": "^4.1.1",
-    "react-router-redux": "next",
-    "redux": "^3.6.0",
-    "redux-saga": "^0.15.1"
+    "fs-extra": "^4.0.2"
   },
   "scripts": {
+    "link": "sudo npm link",
+    "unlink": "sudo npm unlink",
     "release": "standard-version",
-    "start": "react-scripts start",
-    "start-server": "bin/server.sh",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "start": "yarn compile && yarn link && create-js-app",
+    "build": "babel lib -d scripts",
+    "compile": "yarn build",
+    "test": "echo ???"
+  },
+  "bin": {
+    "create-js-app": "scripts/init.js"
+  },
+  "description": "**CREATE JS APP**",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashanthr/create-js-app.git"
+  },
+  "keywords": [
+    "js",
+    "react",
+    "node",
+    "redux",
+    "create-react-app",
+    "create-js-app"
+  ],
+  "author": "Prashanth Rajaram",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prashanthr/create-js-app/issues"
+  },
+  "homepage": "https://github.com/prashanthr/create-js-app#readme"
 }
