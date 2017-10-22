@@ -1,8 +1,0 @@
-{
-  "presets": ["latest", "react"],
-  "plugins": [
-    "transform-flow-strip-types",
-    "transform-runtime",
-    "transform-object-rest-spread"
-  ]
-}
