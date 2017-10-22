@@ -14,4 +14,4 @@ exports.default = {
 };
 var helpCommands = exports.helpCommands = ['--help', '-h'];
 
-var validCommands = exports.validCommands = ['--name', '-n'].concat(helpCommands);
+var validCommands = exports.validCommands = ['--name', '-n', '-target', '-t'].concat(helpCommands);
