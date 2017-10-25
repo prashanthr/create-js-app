@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.copyFiles = exports.createDir = exports.pathExists = exports.parseArguments = undefined;
+exports.log = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.createDir = exports.pathExists = exports.parseArguments = undefined;
 
 var _help = require('./help');
 
@@ -19,12 +19,12 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
+var _child_process = require('child_process');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import fs from 'fs'
 var parseArguments = exports.parseArguments = function parseArguments(args) {
   if (args.length < 3) {
-    console.log('here');
     (0, _help2.default)();
     return null;
   }
@@ -33,11 +33,6 @@ var parseArguments = exports.parseArguments = function parseArguments(args) {
   if (validArgs.filter(function (arg) {
     return _constants.helpCommands.includes(arg);
   }).length > 0) {
-    console.log('here2', validArgs, validArgs.filter(function (arg) {
-      return _constants.validCommands.includes(arg);
-    }).length === 0, validArgs.filter(function (arg) {
-      return _constants.helpCommands.includes(arg);
-    }).length > 0);
     (0, _help2.default)();
     return null;
   }
@@ -46,7 +41,6 @@ var parseArguments = exports.parseArguments = function parseArguments(args) {
     return arg && arg.includes('=');
   });
   if (!validArgs) {
-    console.log('here3');
     (0, _help2.default)();
     return null;
   }
@@ -56,8 +50,8 @@ var parseArguments = exports.parseArguments = function parseArguments(args) {
   var argValues = validArgs.map(function (arg) {
     return arg.split('=')[1];
   });
-  console.log('keys', argKeys);
-  console.log('values', argValues);
+  log('keys', argKeys);
+  log('values', argValues);
   var getNameIndex = function getNameIndex(args) {
     var name = args.indexOf('name');
     return name && name > -1 ? name : args.indexOf('n');
@@ -75,7 +69,7 @@ var parseArguments = exports.parseArguments = function parseArguments(args) {
     if (paramIndex > -1) {
       return allValues[paramIndex];
     } else {
-      return undefined;
+      return false;
     }
   };
   var getTargetDir = function getTargetDir(appName) {
@@ -93,10 +87,12 @@ var parseArguments = exports.parseArguments = function parseArguments(args) {
     sourceDir: sourceDir,
     templateDir: templateDir,
     targetDir: getTargetDir(),
-    name: appName
+    name: appName,
+    debug: getParam(argKeys, argValues, ['d', 'debug']),
+    yarn: getParam(argKeys, argValues, ['yarn', 'yn'])
   };
 };
-
+// import fs from 'fs'
 var pathExists = exports.pathExists = function pathExists(path) {
   return _fsExtra2.default.existsSync(path);
 };
@@ -114,10 +110,42 @@ var copyFiles = exports.copyFiles = function copyFiles(sourcePath, targetPath) {
     console.log('\n    Source path ' + sourcePath + ' does not exist.\n    Aborting...\n    ');
     return;
   }
-
+  console.log('Copying Files...');
   if (!pathExists(targetPath)) {
     _fsExtra2.default.mkdirSync(targetPath);
   }
 
   _fsExtra2.default.copySync(sourcePath, targetPath);
+};
+
+var updatePackageJson = exports.updatePackageJson = function updatePackageJson(targetPath, name) {
+  // read
+  // replace
+  // write
+  var pkg = _fsExtra2.default.readFile(_path2.default.join(targetPath, 'package.json'), 'utf-8');
+  pkg = pkg.replace(':name', name);
+  _fsExtra2.default.truncateSync(targetPath);
+  _fsExtra2.default.writeFileSync(targetPath, pkg);
+};
+
+var yarnInstall = exports.yarnInstall = function yarnInstall(targetPath) {
+  // exec cd targetPath && yarn install
+  return new Promise(function (resolve, reject) {
+    (0, _child_process.exec)('yarn', { cwd: targetPath }, function (err, stdout, stderr) {
+      if (err) {
+        console.log('Error occurred while running yarn install ' + stderr + '.');
+        return reject(stderr);
+      }
+      console.log('Packages installed successfully ' + stdout + '.');
+      resolve(stdout);
+    });
+  });
+};
+
+var log = exports.log = function log() {
+  if (process.env.CJS_DEBUG) {
+    var _console;
+
+    (_console = console).log.apply(_console, arguments);
+  }
 };
