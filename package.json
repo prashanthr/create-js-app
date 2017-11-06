@@ -18,7 +18,8 @@
     "babel-preset-react": "^6.24.1",
     "config": "^1.25.1",
     "debug": "^2.6.3",
-    "fs-extra": "^4.0.2"
+    "fs-extra": "^4.0.2",
+    "yargs": "^10.0.3"
   },
   "scripts": {
     "link": "sudo npm link",

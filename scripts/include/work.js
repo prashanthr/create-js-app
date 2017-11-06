@@ -6,8 +6,16 @@ Object.defineProperty(exports, "__esModule", {
 
 var _util = require('./util');
 
+var _yargs = require('./yargs');
+
+var _yargs2 = _interopRequireDefault(_yargs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var work = function work(args) {
-  console.log('args', args);
+  // console.log('args', args)
+  console.log('yargv', _yargs2.default);
+  return;
   var params = (0, _util.parseArguments)(args);
   if (!params) {
     return;

@@ -9,6 +9,10 @@ var _help = require('./help');
 
 var _help2 = _interopRequireDefault(_help);
 
+var _yargs = require('yargs');
+
+var _yargs2 = _interopRequireDefault(_yargs);
+
 var _constants = require('./constants');
 
 var _fsExtra = require('fs-extra');
@@ -24,6 +28,8 @@ var _child_process = require('child_process');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var parseArguments = exports.parseArguments = function parseArguments(args) {
+  console.log('yargs', _yargs2.default);
+  console.log('yargs.argv', _yargs2.default.argv);
   if (args.length < 3) {
     (0, _help2.default)();
     return null;
@@ -69,7 +75,7 @@ var parseArguments = exports.parseArguments = function parseArguments(args) {
     if (paramIndex > -1) {
       return allValues[paramIndex];
     } else {
-      return false;
+      return undefined;
     }
   };
   var getTargetDir = function getTargetDir(appName) {
