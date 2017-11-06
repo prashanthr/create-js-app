@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.log = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.createDir = exports.pathExists = exports.parseArguments = undefined;
+exports.log = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.createDir = exports.pathExists = exports.getTargetPath = exports.getSourcePath = exports.parseArguments = undefined;
 
 var _help = require('./help');
 
@@ -99,6 +99,13 @@ var parseArguments = exports.parseArguments = function parseArguments(args) {
   };
 };
 // import fs from 'fs'
+var getSourcePath = exports.getSourcePath = function getSourcePath() {
+  return _path2.default.join(__dirname, '../../');
+};
+var getTargetPath = exports.getTargetPath = function getTargetPath(targetPath, appName) {
+  return _path2.default.join(targetPath || __dirname, appName);
+};
+
 var pathExists = exports.pathExists = function pathExists(path) {
   return _fsExtra2.default.existsSync(path);
 };

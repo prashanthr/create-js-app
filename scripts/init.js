@@ -16,5 +16,5 @@ var _end2 = _interopRequireDefault(_end);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _welcome2.default)();
-(0, _work2.default)(process.argv);
+(0, _work2.default)();
 (0, _end2.default)();

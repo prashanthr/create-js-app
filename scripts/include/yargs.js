@@ -15,7 +15,7 @@ var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
     alias: 'name',
     demandOption: true,
     default: 'moi-create-js-app',
-    describe: 'The name for your JS app.',
+    describe: 'The name for your JS app',
     type: 'string',
     nargs: 1
   },
@@ -23,7 +23,7 @@ var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
     alias: 'target',
     demandOption: false,
     default: __dirname,
-    describe: 'Debug',
+    describe: 'Target path if not the current folder',
     type: 'string',
     nargs: 1
   },
@@ -43,5 +43,5 @@ var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
     type: 'boolean',
     nargs: 1
   }
-}).example('$0 --n my-crazy-app', 'Create my crazy app using create-js-app').help('h').alias('h', 'help').argv;
+}).example('$0 --n my-crazy-app', 'Create my crazy app using create-js-app').help('h').alias('h', 'help').epilogue('Fin.').argv;
 exports.default = yargv;
