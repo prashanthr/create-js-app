@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logForce = exports.log = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.pathExists = exports.getTargetPath = exports.getSourcePath = undefined;
+exports.logForce = exports.log = exports.setDebugFlag = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.pathExists = exports.getTargetPath = exports.getSourcePath = undefined;
 
 var _fsExtra = require('fs-extra');
 
@@ -30,11 +30,11 @@ var pathExists = exports.pathExists = function pathExists(path) {
 
 var copyFiles = exports.copyFiles = function copyFiles(sourcePath, targetPath) {
   if (!pathExists(sourcePath)) {
-    log('\n      Source path ' + sourcePath + ' does not exist.\n      Aborting...\n    ');
+    logForce('\n      Source path ' + sourcePath + ' does not exist.\n      Aborting...\n    ');
     return;
   }
   if (!pathExists(targetPath)) {
-    log('Target path does not exist. Creating it...');
+    log('Target path ' + targetPath + ' does not exist. Creating it...');
     _fsExtra2.default.mkdirSync(targetPath);
   }
   logForce('Copying Files...');
@@ -46,10 +46,10 @@ var updatePackageJson = exports.updatePackageJson = function updatePackageJson(t
   logForce('Updating package.json...');
   var pkgPath = _path2.default.join(targetPath, 'package.json');
   var pkg = _fsExtra2.default.readFileSync(pkgPath, 'utf-8');
-  logForce('PKG', pkg);
   pkg = pkg.replace(':name', name);
   _fsExtra2.default.truncateSync(pkgPath);
   _fsExtra2.default.writeFileSync(pkgPath, pkg);
+  log('package.json updated successfully.');
 };
 
 var yarnInstall = exports.yarnInstall = function yarnInstall(targetPath) {
@@ -61,10 +61,15 @@ var yarnInstall = exports.yarnInstall = function yarnInstall(targetPath) {
         logForce('Error occurred while running yarn install ' + stderr + '.');
         return reject(stderr);
       }
-      logForce('Packages installed successfully ' + stdout + '.');
+      logForce('Packages installed successfully.');
+      log('' + stdout);
       resolve(stdout);
     });
   });
+};
+
+var setDebugFlag = exports.setDebugFlag = function setDebugFlag(debug) {
+  process.env.CJS_DEBUG = !!debug;
 };
 
 var log = exports.log = function log() {

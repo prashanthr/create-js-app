@@ -17,18 +17,10 @@ var work = function work() {
     // todo: remove because yargs takes care of this?
     return;
   }
+  (0, _util.setDebugFlag)(_yargs2.default.debug);
   (0, _util.logForce)('Constructing your app ' + _yargs2.default.name + '...');
-  if (_yargs2.default.debug) {
-    process.env.CJS_DEBUG = true;
-  } else {
-    process.env.CJS_DEBUG = false;
-  }
-
   var sourcePath = (0, _util.getSourcePath)();
-  (0, _util.log)('sourcePath', sourcePath);
   var targetPath = (0, _util.getTargetPath)(_yargs2.default.target, _yargs2.default.name);
-  (0, _util.log)('targetPath', targetPath);
-
   (0, _util.copyFiles)(sourcePath, targetPath);
   (0, _util.updatePackageJson)(targetPath, _yargs2.default.name);
   if (_yargs2.default.yarn) {
