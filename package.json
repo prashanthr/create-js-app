@@ -27,7 +27,8 @@
     "link": "sudo npm link",
     "unlink": "sudo npm unlink",
     "release": "standard-version",
-    "start": "yarn compile && yarn link && create-js-app --help",
+    "start-dev": "yarn compile && yarn link && create-js-app --help",
+    "start": "create-js-app --help",
     "build": "babel lib -d scripts",
     "compile": "yarn build",
     "test": "./test/test.sh"
