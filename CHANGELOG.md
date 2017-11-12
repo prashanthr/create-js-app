@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/prashanthr/create-js-app/compare/v0.2.1...v0.3.0) (2017-11-12)
+
+
+### Features
+
+* **npm-scope:** Change scope to public ([506ed0b](https://github.com/prashanthr/create-js-app/commit/506ed0b))
+
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/prashanthr/create-js-app/compare/v0.2.0...v0.2.1) (2017-11-12)
 

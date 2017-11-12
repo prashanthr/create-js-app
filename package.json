@@ -1,6 +1,6 @@
 {
-  "name": "@prashanthr/create-js-app",
-  "version": "0.2.1",
+  "name": "create-js-app",
+  "version": "0.3.0",
   "private": false,
   "devDependencies": {
     "babel-core": "^6.26.0",
