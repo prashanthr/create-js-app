@@ -3,15 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validCommands = exports.yarnCommands = exports.debugCommands = exports.targetCommands = exports.nameCommands = exports.helpCommands = undefined;
+exports.validCommands = exports.yarnCommands = exports.debugCommands = exports.targetCommands = exports.nameCommands = exports.helpCommands = exports.CLI_CMD = exports.version = exports.author = undefined;
 
 var _package = require('../../package.json');
 
-exports.default = {
-  version: _package.version,
-  author: _package.author,
-  CLI_CMD: 'create-js-app'
-};
+var author = exports.author = 'Prashanth Rajaram';
+var version = exports.version = _package.version;
+var CLI_CMD = exports.CLI_CMD = 'create-javascript-app';
+
 var helpCommands = exports.helpCommands = ['--help', '--h'];
 
 var nameCommands = exports.nameCommands = ['--name', '--n'];

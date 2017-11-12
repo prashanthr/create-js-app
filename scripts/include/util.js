@@ -21,7 +21,7 @@ var getSourcePath = exports.getSourcePath = function getSourcePath() {
   return _path2.default.join(__dirname, '../../');
 };
 var getTargetPath = exports.getTargetPath = function getTargetPath(targetPath, appName) {
-  return _path2.default.join(targetPath || __dirname, appName);
+  return _path2.default.join(targetPath || process.cwd(), appName);
 };
 
 var pathExists = exports.pathExists = function pathExists(path) {
