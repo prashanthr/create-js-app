@@ -26,6 +26,7 @@
   "scripts": {
     "link": "sudo npm link",
     "unlink": "sudo npm unlink",
+    "publish": "npm publish",
     "release": "standard-version",
     "start-dev": "yarn compile && yarn link && create-javascript-app --help",
     "start": "create-javascript-app --help",
