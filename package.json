@@ -1,5 +1,5 @@
 {
-  "name": "@prashanthr/create-js-app",
+  "name": "create-js-app",
   "version": "0.2.1",
   "private": false,
   "devDependencies": {
