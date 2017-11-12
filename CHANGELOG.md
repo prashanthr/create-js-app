@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.5"></a>
+## [0.3.5](https://github.com/prashanthr/create-js-app/compare/v0.3.3...v0.3.5) (2017-11-12)
+
+
+### Bug Fixes
+
+* **package:** Default target path fix. ([4b30993](https://github.com/prashanthr/create-js-app/commit/4b30993))
+
+
+
 <a name="0.3.4"></a>
 ## [0.3.4](https://github.com/prashanthr/create-js-app/compare/v0.3.3...v0.3.4) (2017-11-12)
 
