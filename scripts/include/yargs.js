@@ -14,7 +14,7 @@ var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
   'n': {
     alias: 'name',
     demandOption: true,
-    default: 'moi-create-js-app',
+    default: 'moi-crazy-app',
     describe: 'The name of your JS application',
     type: 'string',
     nargs: 1
@@ -22,7 +22,7 @@ var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
   't': {
     alias: 'target',
     demandOption: false,
-    default: __dirname,
+    default: process.cwd(),
     describe: 'Target folder for your application. Defaults to current directory',
     type: 'string',
     nargs: 1
