@@ -1,6 +1,6 @@
 {
-  "name": "create-js-app",
-  "version": "0.3.0",
+  "name": "create-javascript-app",
+  "version": "0.3.1",
   "private": false,
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -27,14 +27,14 @@
     "link": "sudo npm link",
     "unlink": "sudo npm unlink",
     "release": "standard-version",
-    "start-dev": "yarn compile && yarn link && create-js-app --help",
-    "start": "create-js-app --help",
+    "start-dev": "yarn compile && yarn link && create-javascript-app --help",
+    "start": "create-javascript-app --help",
     "build": "babel lib -d scripts",
     "compile": "yarn build",
     "test": "./test/test.sh"
   },
   "bin": {
-    "create-js-app": "scripts/init.js"
+    "create-javascript-app": "scripts/init.js"
   },
   "description": "**CREATE JS APP**",
   "main": "index.js",
@@ -48,7 +48,8 @@
     "node",
     "redux",
     "create-react-app",
-    "create-js-app"
+    "create-js-app",
+    "create-javascript-app"
   ],
   "author": "Prashanth Rajaram",
   "license": "ISC",
