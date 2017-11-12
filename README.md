@@ -25,9 +25,17 @@ Usage:
 create-js-app --n my-crazy-app
 ```
 
+Options
+`--n` or `--name` - The name of your JS application. Defaults to `my-crazy-app`.
+`--target` or `--t` - Target folder for your application. Defaults to current directory.
+`--yn`  or `--yarn` - Runs a yarn install to setup your app. Enable this flag to have your work done for you or you can do this manually.
+`--d` or `--debug` - Prints debug and verbose messages to the console
+`--h` or `--help` - Prints the list of options
+
 Once your app has been setup, navigate to your app folder (either the current folder or the specified target folder) and follow instructions to run your app below.
 
 Setup
+
 - Start the server
 
 ```bash
