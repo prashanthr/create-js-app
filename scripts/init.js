@@ -12,4 +12,4 @@ var _work2 = _interopRequireDefault(_work);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _welcome2.default)();
-// work()
+(0, _work2.default)();
