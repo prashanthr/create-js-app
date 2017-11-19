@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logForce = exports.log = exports.setDebugFlag = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.pathExists = exports.getTargetPath = exports.getSourcePath = undefined;
+exports.logForce = exports.log = exports.setDebugFlag = exports.getFirstArg = exports.getArg = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.pathExists = exports.getTargetPath = exports.getSourcePath = undefined;
 
 var _fsExtra = require('fs-extra');
 
@@ -66,6 +66,13 @@ var yarnInstall = exports.yarnInstall = function yarnInstall(targetPath) {
       resolve(stdout);
     });
   });
+};
+
+var getArg = exports.getArg = function getArg(yargs, index) {
+  return yargs._ && yargs._.length > 0 ? yargs._[index] : null;
+};
+var getFirstArg = exports.getFirstArg = function getFirstArg(yargs) {
+  return getArg(yargs, 0);
 };
 
 var setDebugFlag = exports.setDebugFlag = function setDebugFlag(debug) {
