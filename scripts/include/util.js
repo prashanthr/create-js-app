@@ -18,7 +18,7 @@ var _child_process = require('child_process');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getSourcePath = exports.getSourcePath = function getSourcePath() {
-  return _path2.default.join(__dirname, '../../');
+  return _path2.default.join(__dirname, '../../template/');
 };
 var getTargetPath = exports.getTargetPath = function getTargetPath(targetPath, appName) {
   return _path2.default.join(targetPath || process.cwd(), appName);
