@@ -8,13 +8,15 @@ var _yargs = require('yargs');
 
 var _yargs2 = _interopRequireDefault(_yargs);
 
+var _constants = require('./constants');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
   'n': {
     alias: 'name',
     demandOption: true,
-    default: 'moi-crazy-app',
+    default: _constants.defaultAppName,
     describe: 'The name of your JS application',
     type: 'string',
     nargs: 1
