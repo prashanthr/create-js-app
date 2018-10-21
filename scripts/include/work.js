@@ -16,7 +16,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const work = async () => {
   try {
     if (!_yargs.default) {
-      throw new Error('Internal error. No arguments specified.');
+      throw new Error(_constants.MESSAGES.noArgsError);
     }
 
     if (_yargs.default.name === _constants.defaultAppName) {
@@ -24,7 +24,7 @@ const work = async () => {
     }
 
     (0, _util.setDebugFlag)(_yargs.default.debug);
-    (0, _util.logForce)(`⚛️  Constructing your app ${_yargs.default.name}...\n`);
+    (0, _util.logForce)(`${_constants.MESSAGES.construction} ${_yargs.default.name}...\n`);
     const sourcePath = (0, _util.getSourcePath)();
     const targetPath = (0, _util.getTargetPath)(_yargs.default.target, _yargs.default.name);
     (0, _util.copyFiles)(sourcePath, targetPath);
@@ -34,12 +34,12 @@ const work = async () => {
       await (0, _util.yarnInstall)(targetPath);
     }
 
-    (0, _util.logForce)(`Setup complete ✅\n`);
+    (0, _util.logForce)(_constants.MESSAGES.setupComplete);
     (0, _util.logForce)(`To get started:
       - Simply navigate to ${targetPath}. 
       - You can find a quick start readme at ${_constants.quickstartReadme}
     `);
-    (0, _util.logForce)(`\nMay the force be with you! 🤖\n`);
+    (0, _util.logForce)(_constants.MESSAGES.force);
   } catch (err) {
     throw new Error(err);
   }

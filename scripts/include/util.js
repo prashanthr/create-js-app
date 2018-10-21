@@ -11,6 +11,8 @@ var _path = _interopRequireDefault(require("path"));
 
 var _child_process = require("child_process");
 
+var _constants = require("./constants");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const getSourcePath = () => _path.default.join(__dirname, '../../template/');
@@ -31,7 +33,7 @@ const copyFiles = (sourcePath, targetPath) => {
   if (!pathExists(sourcePath)) {
     logForce(`
       Source path ${sourcePath} does not exist.
-      Aborting... ❌
+      ${_constants.MESSAGES.abort}
     `);
     return;
   }
@@ -42,17 +44,17 @@ const copyFiles = (sourcePath, targetPath) => {
     _fsExtra.default.mkdirSync(targetPath);
   }
 
-  logForce(`📂 Copying Files...`);
+  logForce(_constants.MESSAGES.copyingFiles);
 
   _fsExtra.default.copySync(sourcePath, targetPath);
 
-  logForce(`Files copied successfully. ✅\n`);
+  logForce(_constants.MESSAGES.fileCopySuccess);
 };
 
 exports.copyFiles = copyFiles;
 
 const updatePackageJson = (targetPath, name) => {
-  logForce(`ℹ️  Updating package.json...`);
+  logForce(_constants.MESSAGES.updatingPkgJson);
 
   const pkgPath = _path.default.join(targetPath, 'package.json');
 
@@ -64,24 +66,24 @@ const updatePackageJson = (targetPath, name) => {
 
   _fsExtra.default.writeFileSync(pkgPath, pkg);
 
-  log(`package.json updated successfully.✅\n`);
+  log(_constants.MESSAGES.pkgJsonUpdateSuccess);
 };
 
 exports.updatePackageJson = updatePackageJson;
 
 const yarnInstall = targetPath => {
   // exec cd targetPath && yarn install
-  logForce('📦 Installing packages...');
+  logForce(_constants.MESSAGES.installingPkgs);
   return new Promise((resolve, reject) => {
     (0, _child_process.exec)('yarn', {
       cwd: targetPath
     }, (err, stdout, stderr) => {
       if (err) {
-        logForce(`Error occurred while running yarn install ${stderr}.`);
+        logForce(`Error occurred while running yarn install ${stderr}. ❌`);
         return reject(stderr);
       }
 
-      logForce(`Packages installed successfully. ✅\n`);
+      logForce(_constants.MESSAGES.pkgsInstallSuccess);
       log(`${stdout}`);
       resolve(stdout);
     });

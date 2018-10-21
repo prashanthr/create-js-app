@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.quickstartReadme = exports.defaultAppName = exports.version = exports.author = exports.CLI_CMD = void 0;
+exports.MESSAGES = exports.quickstartReadme = exports.defaultAppName = exports.version = exports.author = exports.CLI_CMD = void 0;
 
 var _package = require("../../package.json");
 
@@ -17,3 +17,17 @@ const defaultAppName = 'moi-crazy-app';
 exports.defaultAppName = defaultAppName;
 const quickstartReadme = 'QUICKSTART.md';
 exports.quickstartReadme = quickstartReadme;
+const MESSAGES = {
+  construction: `⚛️  Constructing your app`,
+  setupComplete: `Setup complete ✅\n`,
+  force: `\nMay the force be with you! 🤖\n`,
+  copyingFiles: `📂 Copying Files...`,
+  fileCopySuccess: `Files copied successfully. ✅\n`,
+  updatingPkgJson: `ℹ️  Updating package.json...`,
+  pkgJsonUpdateSuccess: `package.json updated successfully.✅\n`,
+  installingPkgs: '📦 Installing packages...',
+  pkgsInstallSuccess: `Packages installed successfully. ✅\n`,
+  noArgsError: `Internal error. No arguments specified.`,
+  abort: `Aborting... ❌`
+};
+exports.MESSAGES = MESSAGES;
