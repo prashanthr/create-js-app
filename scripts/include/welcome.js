@@ -1,16 +1,22 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _constants = require('./constants');
+var _constants = require("./constants");
 
-var _util = require('./util');
+var _util = require("./util");
 
-var printWelcome = function printWelcome() {
-  var WELCOME_MSG = '\n  WELCOME TO CREATE JS APP\n  Version: ' + _constants.version + '\n  Author: ' + _constants.author + '\n  ';
+const printWelcome = () => {
+  const WELCOME_MSG = `
+  WELCOME TO CREATE JS APP 🚀
+  Version: ${_constants.version}
+  Author: ${_constants.author}
+  `;
   (0, _util.logForce)(WELCOME_MSG);
 };
 
-exports.default = printWelcome;
+var _default = printWelcome;
+exports.default = _default;

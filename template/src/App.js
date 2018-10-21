@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './app.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { initialize } from './actions'
+import logo from './logo.svg'
+import './app.css'
 
 class App extends Component {
+  componentDidMount () {
+    this.props.initialize()
+  }
   render() {
     return (
       <div className="App">
@@ -18,4 +23,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps (state) {
+  return state
+}
+
+export default connect(mapStateToProps, { initialize })(App)

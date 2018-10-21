@@ -1,18 +1,17 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _yargs = require('yargs');
+var _yargs = _interopRequireDefault(require("yargs"));
 
-var _yargs2 = _interopRequireDefault(_yargs);
-
-var _constants = require('./constants');
+var _constants = require("./constants");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
+const yargv = _yargs.default.usage('Usage: $0 [options]').options({
   'n': {
     alias: 'name',
     demandOption: true,
@@ -32,7 +31,7 @@ var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
   'yn': {
     alias: 'yarn',
     demandOption: false,
-    default: false,
+    default: true,
     describe: 'Runs a yarn install to setup your app. Enable this flag to have your work done for you or you can do this manually',
     type: 'boolean',
     nargs: 1
@@ -45,5 +44,7 @@ var yargv = _yargs2.default.usage('Usage: $0 [options]').options({
     type: 'boolean',
     nargs: 1
   }
-}).example('$0 --n my-crazy-app').help('h').alias('h', 'help').epilogue('Fin.').argv;
-exports.default = yargv;
+}).example('$0 --n my-crazy-app').example('$0 --n "1945"').help('h').alias('h', 'help').epilogue('Fin.').argv;
+
+var _default = yargv;
+exports.default = _default;

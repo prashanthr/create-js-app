@@ -1,39 +1,49 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _util = require('./util');
+var _util = require("./util");
 
-var _yargs = require('./yargs');
+var _yargs = _interopRequireDefault(require("./yargs"));
 
-var _yargs2 = _interopRequireDefault(_yargs);
-
-var _constants = require('./constants');
+var _constants = require("./constants");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var work = function work() {
+const work = async () => {
   try {
-    if (!_yargs2.default) {
+    if (!_yargs.default) {
       throw new Error('Internal error. No arguments specified.');
     }
-    if (_yargs2.default.name === _constants.defaultAppName) {
-      _yargs2.default.name = (0, _util.getFirstArg)(_yargs2.default) || _constants.defaultAppName;
+
+    if (_yargs.default.name === _constants.defaultAppName) {
+      _yargs.default.name = (0, _util.getFirstArg)(_yargs.default) || _constants.defaultAppName;
     }
-    (0, _util.setDebugFlag)(_yargs2.default.debug);
-    (0, _util.logForce)('Constructing your app ' + _yargs2.default.name + '...');
-    var sourcePath = (0, _util.getSourcePath)();
-    var targetPath = (0, _util.getTargetPath)(_yargs2.default.target, _yargs2.default.name);
+
+    (0, _util.setDebugFlag)(_yargs.default.debug);
+    (0, _util.logForce)(`⚛️  Constructing your app ${_yargs.default.name}...\n`);
+    const sourcePath = (0, _util.getSourcePath)();
+    const targetPath = (0, _util.getTargetPath)(_yargs.default.target, _yargs.default.name);
     (0, _util.copyFiles)(sourcePath, targetPath);
-    (0, _util.updatePackageJson)(targetPath, _yargs2.default.name);
-    if (_yargs2.default.yarn) {
-      (0, _util.yarnInstall)(targetPath);
+    (0, _util.updatePackageJson)(targetPath, _yargs.default.name);
+
+    if (_yargs.default.yarn) {
+      await (0, _util.yarnInstall)(targetPath);
     }
+
+    (0, _util.logForce)(`Setup complete ✅\n`);
+    (0, _util.logForce)(`To get started:
+      - Simply navigate to ${targetPath}. 
+      - You can find a quick start readme at ${_constants.quickstartReadme}
+    `);
+    (0, _util.logForce)(`\nMay the force be with you! 🤖\n`);
   } catch (err) {
     throw new Error(err);
   }
 };
 
-exports.default = work;
+var _default = work;
+exports.default = _default;
