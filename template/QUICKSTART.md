@@ -6,9 +6,13 @@ Use this guide to get started quickly
 
 `yarn start`
 
+Test the client by going to [http://localhost:3000/](http://localhost:3000/)
+
 ## Start the server
 
 `yarn start-server`
+
+- Test the API by going to [http://localhost:9095/api/health](http://localhost:9095/api/health)
 
 ## Development
 
@@ -29,5 +33,6 @@ Use this guide to get started quickly
   - The app is bootstraped using `src/server/index.js`
   - It uses node.js and express
 
-
 That's it!
+
+For more information on create-react-app, refer to the [readme](./README-CREATE-REACT-APP.md)

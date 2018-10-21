@@ -1,5 +1,7 @@
 # CREATE JS APP
 
+Need a super fast way to boostrap a modern Javascript app? Here it is.
+
 This is a project bootstraped with create-react-app & Node.js to give you the perfect combination of client and server to help you build highly performant and scalable applications with the correct, essential pacakages.
 
 This project is built with the following technologies
@@ -31,6 +33,12 @@ OR
 create-javascript-app --n my-crazy-app
 ```
 
+OR
+
+```bash
+create-javascript-app --n "1945"
+```
+
 ## Additional Usage Examples:
 
 ### Specifying a target folder
@@ -53,26 +61,4 @@ create-javascript-app --n my-crazy-app --yn true
 - `--d` or `--debug` - Prints debug and verbose messages to the console
 - `--h` or `--help` - Prints the list of options
 
-Once your app has been setup, navigate to your app folder (either the current folder or the specified target folder) and follow instructions to run your app below.
-
-## App Setup
-
-- Start the server
-
-```bash
-yarn run start-server
-# or
-npm run start-server
-```
-
-- Test the API by going to [http://localhost:9095/api/health](http://localhost:9095/api/health)
-
-- Start the client
-
-```bash
-yarn run start
-# or 
-npm run start
-```
-
-For more information on create-react-app, refer to the [readme](./README-CREATE-REACT-APP.md)
+Once your app has been setup, navigate to your app folder (either the current folder or the specified target folder) and follow the `QUICKSTART.md` file.
