@@ -15,7 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({limit: config.bodyParserLimit}))
 app.use(express.static(path.join(__dirname, '/../../build')))
 
-publicRouter.get('/api/health', (req, res) => {
+const healthApiRoute = '/api/health'
+
+publicRouter.get(healthApiRoute, (req, res) => {
     res.send({
         apiStatus: "Healthy!"
     })
@@ -23,12 +25,13 @@ publicRouter.get('/api/health', (req, res) => {
 app.use('/', publicRouter)
 
 let server = async () => {
+  debug('Starting server...')
   let httpServer = http.Server(app)
   app.use(function (req, res) {
     res.sendFile(path.join(__dirname, '/../../build', 'index.html'))
   })
   httpServer.listen(config.port, () => {
-    debug(`Server running on ${config.port}`)
+    debug(`Server running on ${config.port}. Try hitting ${healthApiRoute}...`)
   })
 }
 server()
