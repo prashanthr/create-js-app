@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/prashanthr/create-js-app/compare/v0.3.8...v0.4.0) (2018-10-21)
+
+
+### Features
+
+* **messages:** Unify messages ([e741c0a](https://github.com/prashanthr/create-js-app/commit/e741c0a))
+* **template:** Upgrade the cra template and babel ([8171d75](https://github.com/prashanthr/create-js-app/commit/8171d75))
+* **upgrade:** Upgrade dev dependencies. ([04f6e85](https://github.com/prashanthr/create-js-app/commit/04f6e85))
+
+
+
 <a name="0.3.8"></a>
 ## [0.3.8](https://github.com/prashanthr/create-js-app/compare/v0.3.7...v0.3.8) (2017-11-19)
 
