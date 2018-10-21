@@ -1,15 +1,11 @@
 #! /usr/bin/env node
-'use strict';
+"use strict";
 
-var _welcome = require('./include/welcome');
+var _welcome = _interopRequireDefault(require("./include/welcome"));
 
-var _welcome2 = _interopRequireDefault(_welcome);
-
-var _work = require('./include/work');
-
-var _work2 = _interopRequireDefault(_work);
+var _work = _interopRequireDefault(require("./include/work"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _welcome2.default)();
-(0, _work2.default)();
+(0, _welcome.default)();
+(0, _work.default)();

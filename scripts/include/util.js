@@ -1,96 +1,121 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.logForce = exports.log = exports.setDebugFlag = exports.getFirstArg = exports.getArg = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.pathExists = exports.getTargetPath = exports.getSourcePath = undefined;
+exports.logForce = exports.log = exports.setDebugFlag = exports.getFirstArg = exports.getArg = exports.yarnInstall = exports.updatePackageJson = exports.copyFiles = exports.pathExists = exports.getTargetPath = exports.getSourcePath = void 0;
 
-var _fsExtra = require('fs-extra');
+var _fsExtra = _interopRequireDefault(require("fs-extra"));
 
-var _fsExtra2 = _interopRequireDefault(_fsExtra);
+var _path = _interopRequireDefault(require("path"));
 
-var _path = require('path');
+var _child_process = require("child_process");
 
-var _path2 = _interopRequireDefault(_path);
-
-var _child_process = require('child_process');
+var _constants = require("./constants");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getSourcePath = exports.getSourcePath = function getSourcePath() {
-  return _path2.default.join(__dirname, '../../template/');
-};
-var getTargetPath = exports.getTargetPath = function getTargetPath(targetPath, appName) {
-  return _path2.default.join(targetPath || process.cwd(), appName);
+const getSourcePath = () => _path.default.join(__dirname, '../../template/');
+
+exports.getSourcePath = getSourcePath;
+
+const getTargetPath = (targetPath, appName) => _path.default.join(targetPath || process.cwd(), appName);
+
+exports.getTargetPath = getTargetPath;
+
+const pathExists = path => {
+  return _fsExtra.default.existsSync(path);
 };
 
-var pathExists = exports.pathExists = function pathExists(path) {
-  return _fsExtra2.default.existsSync(path);
-};
+exports.pathExists = pathExists;
 
-var copyFiles = exports.copyFiles = function copyFiles(sourcePath, targetPath) {
+const copyFiles = (sourcePath, targetPath) => {
   if (!pathExists(sourcePath)) {
-    logForce('\n      Source path ' + sourcePath + ' does not exist.\n      Aborting...\n    ');
+    logForce(`
+      Source path ${sourcePath} does not exist.
+      ${_constants.MESSAGES.abort}
+    `);
     return;
   }
+
   if (!pathExists(targetPath)) {
-    log('Target path ' + targetPath + ' does not exist. Creating it...');
-    _fsExtra2.default.mkdirSync(targetPath);
+    log(`ℹ️  Target path ${targetPath} does not exist. Creating it...`);
+
+    _fsExtra.default.mkdirSync(targetPath);
   }
-  logForce('Copying Files...');
-  _fsExtra2.default.copySync(sourcePath, targetPath);
-  logForce('Files copied successfully.');
+
+  logForce(_constants.MESSAGES.copyingFiles);
+
+  _fsExtra.default.copySync(sourcePath, targetPath);
+
+  logForce(_constants.MESSAGES.fileCopySuccess);
 };
 
-var updatePackageJson = exports.updatePackageJson = function updatePackageJson(targetPath, name) {
-  logForce('Updating package.json...');
-  var pkgPath = _path2.default.join(targetPath, 'package.json');
-  var pkg = _fsExtra2.default.readFileSync(pkgPath, 'utf-8');
+exports.copyFiles = copyFiles;
+
+const updatePackageJson = (targetPath, name) => {
+  logForce(_constants.MESSAGES.updatingPkgJson);
+
+  const pkgPath = _path.default.join(targetPath, 'package.json');
+
+  let pkg = _fsExtra.default.readFileSync(pkgPath, 'utf-8');
+
   pkg = pkg.replace(':name', name);
-  _fsExtra2.default.truncateSync(pkgPath);
-  _fsExtra2.default.writeFileSync(pkgPath, pkg);
-  log('package.json updated successfully.');
+
+  _fsExtra.default.truncateSync(pkgPath);
+
+  _fsExtra.default.writeFileSync(pkgPath, pkg);
+
+  log(_constants.MESSAGES.pkgJsonUpdateSuccess);
 };
 
-var yarnInstall = exports.yarnInstall = function yarnInstall(targetPath) {
+exports.updatePackageJson = updatePackageJson;
+
+const yarnInstall = targetPath => {
   // exec cd targetPath && yarn install
-  logForce('Installing packages...');
-  return new Promise(function (resolve, reject) {
-    (0, _child_process.exec)('yarn', { cwd: targetPath }, function (err, stdout, stderr) {
+  logForce(_constants.MESSAGES.installingPkgs);
+  return new Promise((resolve, reject) => {
+    (0, _child_process.exec)('yarn', {
+      cwd: targetPath
+    }, (err, stdout, stderr) => {
       if (err) {
-        logForce('Error occurred while running yarn install ' + stderr + '.');
+        logForce(`Error occurred while running yarn install ${stderr}. ❌`);
         return reject(stderr);
       }
-      logForce('Packages installed successfully.');
-      log('' + stdout);
+
+      logForce(_constants.MESSAGES.pkgsInstallSuccess);
+      log(`${stdout}`);
       resolve(stdout);
     });
   });
 };
 
-var getArg = exports.getArg = function getArg(yargs, index) {
-  return yargs._ && yargs._.length > 0 ? yargs._[index] : null;
-};
-var getFirstArg = exports.getFirstArg = function getFirstArg(yargs) {
-  return getArg(yargs, 0);
-};
+exports.yarnInstall = yarnInstall;
 
-var setDebugFlag = exports.setDebugFlag = function setDebugFlag(debug) {
+const getArg = (yargs, index) => yargs._ && yargs._.length > 0 ? yargs._[index] : null;
+
+exports.getArg = getArg;
+
+const getFirstArg = yargs => getArg(yargs, 0);
+
+exports.getFirstArg = getFirstArg;
+
+const setDebugFlag = debug => {
   process.env.CJS_DEBUG = !!debug;
 };
 
-var log = exports.log = function log() {
+exports.setDebugFlag = setDebugFlag;
+
+const log = (...params) => {
   if (process.env.CJS_DEBUG) {
-    logForce.apply(undefined, arguments);
+    logForce(...params);
   }
 };
 
-var logForce = exports.logForce = function logForce() {
-  var _console;
+exports.log = log;
 
-  for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
-    params[_key] = arguments[_key];
-  }
-
-  (_console = console).log.apply(_console, [' '].concat(params));
+const logForce = (...params) => {
+  console.log(' ', ...params);
 };
+
+exports.logForce = logForce;
